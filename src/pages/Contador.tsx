@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Appbar, Button, Text } from "react-native-paper";
-import Container from '../compoents/Container';
+import Container from '../components/Container';
 
 export default function Contador() {
   const [contador, setContador] = useState<number>(0);
