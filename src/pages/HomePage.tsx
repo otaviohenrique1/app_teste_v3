@@ -10,19 +10,20 @@ type Props = NativeStackScreenProps<RootStackParamList, "HomePage">;
 interface ListaBotoesTypes {
   id: number;
   label: string;
-  rota: "Contador" | "Citacoes";
+  rota: "Contador" | "Citacoes" | "ConversaoUnidades";
 }
 
 export default function HomePage({ navigation }: Props) {
   const listaBotoes: ListaBotoesTypes[] = [
     { id: 1, label: "Contador", rota: "Contador" },
     { id: 2, label: "Citacoes", rota: "Citacoes" },
+    { id: 3, label: "ConversaoUnidades", rota: "ConversaoUnidades" },
   ];
 
   return (
     <Container>
       <Appbar.Header style={{ backgroundColor: "cadetblue" }}>
-        <Appbar.Content title="Contador" />
+        <Appbar.Content title="HomePage" />
       </Appbar.Header>
       <Main>
         {listaBotoes.map((item) => {

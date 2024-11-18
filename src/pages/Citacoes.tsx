@@ -31,7 +31,7 @@ export default function Citacoes({ navigation }: Props) {
     //     console.error(error);
     //   });
     getSlip();
-  }, [])
+  }, []);
   
 
   return (
