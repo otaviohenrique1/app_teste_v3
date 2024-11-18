@@ -1,10 +1,10 @@
 import { PaperProvider } from "react-native-paper";
-import Contador from "./src/pages/Contador";
+import AppRoutes from "./src/pages/routes";
 
 export default function App() {
   return (
     <PaperProvider>
-      <Contador />
+      <AppRoutes />
     </PaperProvider>
   );
 }
