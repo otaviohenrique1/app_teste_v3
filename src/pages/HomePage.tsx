@@ -7,20 +7,36 @@ import Main from '../components/Main';
 
 type Props = NativeStackScreenProps<RootStackParamList, "HomePage">;
 
+interface ListaBotoesTypes {
+  id: number;
+  label: string;
+  rota: "Contador" | "Citacoes";
+}
+
 export default function HomePage({ navigation }: Props) {
+  const listaBotoes: ListaBotoesTypes[] = [
+    { id: 1, label: "Contador", rota: "Contador" },
+    { id: 2, label: "Citacoes", rota: "Citacoes" },
+  ];
+
   return (
     <Container>
       <Appbar.Header style={{ backgroundColor: "cadetblue" }}>
         <Appbar.Content title="Contador" />
       </Appbar.Header>
       <Main>
-        <Button
-          mode="contained"
-          style={styles.botao}
-          onPress={() => {
-            navigation.push("Contador")
-          }}
-        >Contador</Button>
+        {listaBotoes.map((item) => {
+          return (
+            <Button
+              key={item.id}
+              mode="contained"
+              style={styles.botao}
+              onPress={() => {
+                navigation.push(item.rota)
+              }}
+            >{item.label}</Button>
+          );
+        })}
       </Main>
     </Container>
   );
