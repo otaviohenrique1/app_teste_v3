@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "HomePage">;
 interface ListaBotoesTypes {
   id: number;
   label: string;
-  rota: "Contador" | "Citacoes" | "ConversaoUnidades" | "LeituraQRCode";
+  rota: "Contador" | "Citacoes" | "ConversaoUnidades" | "LeituraQRCode" | "PrevisaoTempo";
 }
 
 export default function HomePage({ navigation }: Props) {
@@ -19,6 +19,7 @@ export default function HomePage({ navigation }: Props) {
     { id: 2, label: "Citacoes", rota: "Citacoes" },
     { id: 3, label: "ConversaoUnidades", rota: "ConversaoUnidades" },
     { id: 4, label: "LeituraQRCode", rota: "LeituraQRCode" },
+    { id: 5, label: "PrevisaoTempo", rota: "PrevisaoTempo" },
   ];
 
   return (
