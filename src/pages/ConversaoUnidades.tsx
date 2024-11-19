@@ -9,10 +9,21 @@ import { schemaConversaoUnidades, valoresIniciaisConversaoUnidades } from "../ut
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CampoTexto } from "../components/CampoTexto";
 import { Picker } from "@react-native-picker/picker";
+import { CampoSelect } from "../components/CampoSelect";
+import { useState } from "react";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ConversaoUnidades">;
 
 export default function ConversaoUnidades({ navigation }: Props) {
+  const [resultado, setResultado] = useState<string>("");
+
+  const lista = [
+    { label: "Quilômetro", value: "km" },
+    { label: "Metro", value: "m" },
+    { label: "Centímetro", value: "cm" },
+    { label: "Milímetro", value: "mm" },
+  ];
+
   const {
     control,
     handleSubmit,
@@ -37,35 +48,29 @@ export default function ConversaoUnidades({ navigation }: Props) {
           errors={errors.campo}
           style={styles.campoTexto}
         />
-        <Controller
+        <CampoSelect
           control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Picker
-              style={styles.picker}
-              selectedValue={value}
-              onBlur={onBlur}
-              onValueChange={(itemValue) => onChange(itemValue)}
-            >
-              <Picker.Item label="Selecione" value="" />
-              <Picker.Item label="Quilômetro" value="km" />
-              <Picker.Item label="Metro" value="m" />
-              <Picker.Item label="Centímetro" value="cm" />
-              <Picker.Item label="Milímetro" value="mm" />
-            </Picker>
-          )}
+          lista={lista}
+          errors={errors.unidade1}
           name="unidade1"
+          style={styles.picker}
         />
-        {errors.unidade1 && <HelperText type="error">Campo vazio</HelperText>}
+        <CampoSelect
+          control={control}
+          lista={lista}
+          errors={errors.unidade2}
+          name="unidade2"
+          style={styles.picker}
+        />
         <Text
           variant="headlineLarge"
           style={{ textAlign: "center" }}
-        >Resultado: </Text>
+        >Resultado: {resultado}</Text>
         <Button
           mode="contained"
-          onPress={handleSubmit(() => { })}
+          onPress={handleSubmit((values) => {
+            setResultado(values.unidade1);
+          })}
           style={{ marginVertical: 10 }}
         >Calcular</Button>
         <Button
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     borderWidth: 1,
-    borderStyle:  "solid",
+    borderStyle: "solid",
     borderRadius: 10,
     borderColor: "black",
     backgroundColor: "#CBC6",
