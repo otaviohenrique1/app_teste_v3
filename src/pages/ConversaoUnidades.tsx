@@ -1,14 +1,13 @@
-import { Appbar, Button, HelperText, Text, } from "react-native-paper";
+import { Appbar, Button, Text, } from "react-native-paper";
 import { Container } from '../components/Container';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './routes';
 import Main from '../components/Main';
 import { StyleSheet } from 'react-native';
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { schemaConversaoUnidades, valoresIniciaisConversaoUnidades } from "../utils/constantes";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CampoTexto } from "../components/CampoTexto";
-import { Picker } from "@react-native-picker/picker";
 import { CampoSelect } from "../components/CampoSelect";
 import { useState } from "react";
 
@@ -69,7 +68,40 @@ export default function ConversaoUnidades({ navigation }: Props) {
         <Button
           mode="contained"
           onPress={handleSubmit((values) => {
-            setResultado(values.unidade1);
+            const { campo, unidade1, unidade2 } = values;
+            if ((unidade1 === "m" && unidade2 === "m")
+              || (unidade1 === "km" && unidade2 === "km")
+              || (unidade1 === "mm" && unidade2 === "mm")
+              || (unidade1 === "cm" && unidade2 === "cm")
+            ) {
+              setResultado(campo);
+            }
+
+            else if (unidade1 === "m" && unidade2 === "km") {
+              setResultado(String(Number(campo) * 1000));
+            } else if (unidade1 === "m" && unidade2 === "cm") {
+              setResultado(String(Number(campo) / 100));
+            } else if (unidade1 === "m" && unidade2 === "mm") {
+              setResultado(String(Number(campo) / 1000));
+            } else if (unidade1 === "km" && unidade2 === "m") {
+              setResultado(String(Number(campo) / 1000));
+            } else if (unidade1 === "km" && unidade2 === "cm") {
+              setResultado(String(Number(campo) / 100000));
+            } else if (unidade1 === "km" && unidade2 === "mm") {
+              setResultado(String(Number(campo) / 1000000));
+            } else if (unidade1 === "cm" && unidade2 === "km") {
+              setResultado(String(Number(campo) * 100000));
+            } else if (unidade1 === "cm" && unidade2 === "m") {
+              setResultado(String(Number(campo) * 100));
+            } else if (unidade1 === "cm" && unidade2 === "mm") {
+              setResultado(String(Number(campo) / 100));
+            } else if (unidade1 === "mm" && unidade2 === "m") {
+              setResultado(String(Number(campo) * 1000));
+            } else if (unidade1 === "mm" && unidade2 === "cm") {
+              setResultado(String(Number(campo) * 100));
+            } else if (unidade1 === "mm" && unidade2 === "km") {
+              setResultado(String(Number(campo) * 1000000));
+            }
           })}
           style={{ marginVertical: 10 }}
         >Calcular</Button>
