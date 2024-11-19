@@ -1,5 +1,5 @@
 import { Appbar, Button } from "react-native-paper";
-import Container from '../components/Container';
+import { Container } from '../components/Container';
 import { RootStackParamList } from './routes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';

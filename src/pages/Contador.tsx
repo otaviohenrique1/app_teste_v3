@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Appbar, Button, Text } from "react-native-paper";
-import Container from '../components/Container';
+import { Container } from '../components/Container';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './routes';
 import Main from '../components/Main';
