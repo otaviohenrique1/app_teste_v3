@@ -75,9 +75,7 @@ export default function ConversaoUnidades({ navigation }: Props) {
               || (unidade1 === "cm" && unidade2 === "cm")
             ) {
               setResultado(campo);
-            }
-
-            else if (unidade1 === "m" && unidade2 === "km") {
+            } else if (unidade1 === "m" && unidade2 === "km") {
               setResultado(String(Number(campo) * 1000));
             } else if (unidade1 === "m" && unidade2 === "cm") {
               setResultado(String(Number(campo) / 100));
