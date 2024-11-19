@@ -31,7 +31,7 @@ export default function ConversaoUnidades({ navigation }: Props) {
   } = useForm({
     resolver: yupResolver(schemaConversaoUnidades),
     defaultValues: valoresIniciaisConversaoUnidades,
-  })
+  });
 
   return (
     <Container>
